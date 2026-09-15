@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aether — AGI Core</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;500;600&family=Syne:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="grain" aria-hidden="true"></div>
+
+    <div id="boot" class="boot">
+      <div class="boot-mark" aria-hidden="true">
+        <canvas id="boot-canvas" width="220" height="220"></canvas>
+      </div>
+      <div class="boot-wordmark">AETHER</div>
+      <pre id="boot-log" class="boot-log"></pre>
+    </div>
+
+    <div class="shell" id="shell" hidden>
+      <header class="topbar">
+        <div class="brand">
+          <span class="mark" aria-hidden="true"></span>
+          <div>
+            <div class="wordmark">Aether</div>
+            <div class="submark">AGI core · v0.9.7 · local</div>
+          </div>
+        </div>
+
+        <div class="status-cluster">
+          <span class="pill" id="status-pill"><i></i> online</span>
+          <span class="pill dim" id="cycle-pill">cycle 0</span>
+          <span class="pill dim" id="uptime-pill">00:00:00</span>
+        </div>
+
+        <div class="controls">
+          <label class="seg">
+            <span>autonomy</span>
+            <select id="autonomy" aria-label="Autonomy level">
+              <option value="oracle">oracle</option>
+              <option value="advisor" selected>advisor</option>
+              <option value="agent">agent</option>
+              <option value="unbounded">unbounded</option>
+            </select>
+          </label>
+          <button id="voice-btn" class="icon-btn" type="button" aria-pressed="false" title="Speak replies">
+            voice
+          </button>
+          <button id="dream-btn" class="icon-btn" type="button" title="Idle cognition">dream</button>
+        </div>
+      </header>
+
+      <nav class="mobile-tabs" aria-label="Panels">
+        <button type="button" data-panel="field" class="tab">Field</button>
+        <button type="button" data-panel="talk" class="tab is-on">Talk</button>
+        <button type="button" data-panel="mind" class="tab">Mind</button>
+      </nav>
+
+      <main class="stage">
+        <aside class="col col-field" id="panel-field">
+          <section class="panel field-panel">
+            <div class="panel-h">
+              <h2>Consciousness field</h2>
+              <span class="tag" id="field-mode">idle</span>
+            </div>
+            <canvas id="field" width="560" height="560" aria-label="Neural activation field"></canvas>
+            <div class="vitals" id="vitals"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-h"><h2>Capabilities</h2></div>
+            <div class="caps" id="caps"></div>
+          </section>
+        </aside>
+
+        <section class="col col-talk" id="panel-talk">
+          <div class="panel talk-panel">
+            <div class="transcript" id="transcript" role="log" aria-live="polite"></div>
+            <div class="prompts" id="prompts"></div>
+            <form class="composer" id="composer">
+              <textarea
+                id="input"
+                rows="2"
+                autocomplete="off"
+                placeholder="Speak to Aether — ask, command, or teach it something about you."
+              ></textarea>
+              <button type="submit" id="send">Send</button>
+            </form>
+          </div>
+        </section>
+
+        <aside class="col col-mind" id="panel-mind">
+          <section class="panel">
+            <div class="panel-h"><h2>Thought stream</h2></div>
+            <ol class="thoughts" id="thoughts"></ol>
+          </section>
+          <section class="panel">
+            <div class="panel-h"><h2>Goals</h2></div>
+            <ul class="goals" id="goals"></ul>
+          </section>
+          <section class="panel">
+            <div class="panel-h"><h2>Memory</h2></div>
+            <ul class="mems" id="mems"></ul>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <script type="module" src="./js/interface.js"></script>
+  </body>
+</html>
