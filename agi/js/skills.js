@@ -144,9 +144,15 @@ func main() {
   };
 }
 
+function displayName(name) {
+  return String(name)
+    .replace(/([a-z])Mega /g, "$1 Mega ")
+    .replace(/Forme/g, " Forme");
+}
+
 function fmtMon(p) {
   const t2 = p["Type 2"] ? `/${p["Type 2"]}` : "";
-  return `${p.Name} (${p["Type 1"]}${t2})  HP ${p.HP}  Atk ${p.Attack}  Def ${p.Defense}  SpA ${p["Sp. Atk"]}  SpD ${p["Sp. Def"]}  Spe ${p.Speed}  Tot ${p.Total}`;
+  return `${displayName(p.Name)} (${p["Type 1"]}${t2})  HP ${p.HP}  Atk ${p.Attack}  Def ${p.Defense}  SpA ${p["Sp. Atk"]}  SpD ${p["Sp. Def"]}  Spe ${p.Speed}  Tot ${p.Total}`;
 }
 
 export function skillData(mind, percept) {

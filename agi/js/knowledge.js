@@ -1,3 +1,9 @@
+export function displayName(name) {
+  return String(name)
+    .replace(/([a-z])Mega /g, "$1 Mega ")
+    .replace(/Forme/g, " Forme");
+}
+
 export function parseCSV(text) {
   const lines = text.trim().split(/\r?\n/);
   const headers = lines[0].split(",").map((h) => h.trim());
@@ -72,8 +78,8 @@ export class WorldData {
     return [
       `${this.pokemon.length} Pokémon across ${Object.keys(types).length} primary types.`,
       `Water-world bias: ${topType[0]} is the most common primary type (${topType[1]} species).`,
-      `Peak bulk: ${strongest.Name} leads total stats at ${strongest.Total}.`,
-      `Peak tempo: ${fastest.Name} at ${fastest.Speed} Speed.`,
+        `Peak bulk: ${displayName(strongest.Name)} leads total stats at ${strongest.Total}.`,
+        `Peak tempo: ${displayName(fastest.Name)} at ${fastest.Speed} Speed.`,
       `${legends.length} legendaries. Mean Attack ${avg("Attack")}, mean HP ${avg("HP")}.`,
     ];
   }

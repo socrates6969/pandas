@@ -24,9 +24,14 @@ class NeuralField {
     this.mode = "idle";
     this.valence = 0.2;
     this.t = 0;
+    this.alive = true;
     this.resize();
     this.seed();
     window.addEventListener("resize", () => this.resize());
+  }
+
+  stop() {
+    this.alive = false;
   }
 
   resize() {
@@ -120,7 +125,7 @@ class NeuralField {
     ctx.beginPath();
     ctx.arc(cx, cy, 18 + Math.sin(this.t * 0.05) * 3, 0, Math.PI * 2);
     ctx.stroke();
-    requestAnimationFrame(() => this.tick());
+    if (this.alive) requestAnimationFrame(() => this.tick());
   }
 
   pos(node, cx, cy) {
@@ -230,6 +235,7 @@ class App {
     }
     $("boot").classList.add("is-gone");
     $("shell").hidden = false;
+    bootField.stop();
     this.drawCaps();
     await this.speakAether(
       "Online. I can reason, remember, plan, write code, and grind through the Pokédex sitting in this repo. Try me — I'll show my work in the thought stream."
